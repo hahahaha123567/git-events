@@ -1,19 +1,16 @@
-package org.example.api.gitlab;
+package org.example.api;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import org.apache.hc.client5.http.fluent.Request;
 import org.apache.hc.core5.net.URIBuilder;
-import org.example.api.Api;
-import org.example.api.gitlab.entity.Event;
-import org.example.helper.JsonHelper;
+import org.example.Api;
+import org.example.FormatterUtils;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 /**
  * <a href="https://docs.gitlab.com/ee/api/events.html">Events API | GitLab</a>
@@ -23,14 +20,11 @@ public class GitLabApi implements Api {
 
 	private static final String BASE_URL = "http://gitlab.yiwise.local/api/v4";
 	private static final String PRIVATE_TOKEN = "";
+	private static final List<String> fieldsToFilter = Arrays.asList("id", "author", "author_id",
+			"commit_from", "commit_to", "commit_count", "state", "target_id", "target_iid");
 
 	@Override
-	public List<String> getEventDescriptions(String username, LocalDate startDate, LocalDate endDate) throws URISyntaxException, IOException {
-		List<Event> events = events(startDate, endDate);
-		return events.stream().map(Event::getDescription).filter(Objects::nonNull).collect(Collectors.toList());
-	}
-
-	private List<Event> events(LocalDate startDate, LocalDate endDate) throws URISyntaxException, IOException {
+	public String getEventsYaml(String username, LocalDate startDate, LocalDate endDate) throws URISyntaxException, IOException {
 		String api = "/events";
 		URIBuilder uriBuilder = new URIBuilder(BASE_URL + api);
 		uriBuilder.addParameter("action", null);
@@ -47,6 +41,7 @@ public class GitLabApi implements Api {
 		String responseString = Request.get(uriBuilder.build())
 				.addHeader("PRIVATE-TOKEN", PRIVATE_TOKEN)
 				.execute().returnContent().asString(StandardCharsets.UTF_8);
-		return JsonHelper.string2Object(responseString, new TypeReference<List<Event>>() {});
+
+		return FormatterUtils.json2yaml(responseString, fieldsToFilter);
 	}
 }
