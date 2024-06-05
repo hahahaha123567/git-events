@@ -1,4 +1,4 @@
-package org.example.entity.gitlab;
+package org.example.api.gitlab.entity;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import lombok.Data;
@@ -7,7 +7,7 @@ import lombok.Data;
  * @author zhangyaoxin@yiwise.com
  */
 @Data
-public class PushData {
+class PushData {
 
 	@JsonAlias("commit_count")
 	private Integer commitCount;

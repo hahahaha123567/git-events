@@ -1,7 +1,7 @@
 package org.example;
 
 import org.example.api.Api;
-import org.example.api.gitlab.GitlabApi;
+import org.example.api.gitlab.GitLabApi;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
@@ -10,9 +10,13 @@ import java.util.List;
 
 public class Main {
 
+	private static final String username = "hahahaha123567";
+	private static final LocalDate startDate = LocalDate.of(2024, 5, 27);
+	private static final LocalDate endDate = LocalDate.of(2024, 6, 2);
+
 	public static void main(String[] args) throws URISyntaxException, IOException {
-		Api api = new GitlabApi();
-		List<String> descriptions = api.getEventDescriptions(LocalDate.of(2024, 5, 27), LocalDate.of(2024, 6, 2));
+		Api api = new GitLabApi();
+		List<String> descriptions = api.getEventDescriptions(username, startDate, endDate);
 		printPrompt(descriptions);
 	}
 

@@ -10,5 +10,5 @@ import java.util.List;
  */
 public interface Api {
 
-	List<String> getEventDescriptions(LocalDate startDate, LocalDate endDate) throws URISyntaxException, IOException;
+	List<String> getEventDescriptions(String username, LocalDate startDate, LocalDate endDate) throws URISyntaxException, IOException;
 }

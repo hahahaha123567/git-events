@@ -2,8 +2,16 @@
 
 已支持
 
-- gitlab
+- GitLab
 
 待支持
 
-- github
+- GitHub
+
+# GitLab
+
+[Personal access tokens | GitLab](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html)
+
+# GitHub
+
+[Managing your personal access tokens - GitHub Docs](https://docs.github.com/zh/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
