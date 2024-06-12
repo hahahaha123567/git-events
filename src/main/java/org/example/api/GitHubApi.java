@@ -17,7 +17,7 @@ import java.util.*;
 
 /**
  * <a href="https://docs.github.com/zh/rest/activity/events?apiVersion=2022-11-28#list-events-for-the-authenticated-user">事件的 REST API 终结点 - GitHub 文档</a>
- * @author zhangyaoxin@yiwise.com
+ * @author hahahaha123567@qq.com
  */
 public class GitHubApi implements Api {
 

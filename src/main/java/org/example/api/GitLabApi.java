@@ -14,7 +14,7 @@ import java.util.List;
 
 /**
  * <a href="https://docs.gitlab.com/ee/api/events.html">Events API | GitLab</a>
- * @author zhangyaoxin@yiwise.com
+ * @author hahahaha123567@qq.com
  */
 public class GitLabApi implements Api {
 
